@@ -11,6 +11,7 @@ const passport    = require('passport');
 const cookieParser= require('cookie-parser')
 const app         = express();
 const http        = require('http').Server(app);
+const io = require('socket.io')(http);
 const sessionStore= new session.MemoryStore();
 
 
@@ -41,7 +42,11 @@ mongo.connect(process.env.DATABASE, (err, db) => {
 
   
     //start socket.io code  
+    io.on('connection', socket => {
+      console.log('A user has connected');
+    });
 
+    
   
 
     //end socket.io code
