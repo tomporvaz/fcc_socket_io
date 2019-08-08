@@ -43,30 +43,31 @@ mongo.connect(process.env.DATABASE, (err, db) => {
   http.listen(process.env.PORT || 3000);
   
   let currentUsers = 0;
-
+  
   //start socket.io code  
   io.on('connection', socket => {
     console.log('A user has connected');
     ++currentUsers;
-
-
-
-    //disconnect user
-    socket.on('disconnect', () => {
-      console.log('A user has disconnected');
-      --currentUsers;
-    });
-
+    
     //emit user count
     io.emit('user count', currentUsers);
-
+    
     //emit user count
     //io.emit('bye bye user', currentUsers);
-
+    
   });
-
   
-
+  
+  //disconnect user
+  socket.on('disconnect', () => {
+    console.log('A user has disconnected');
+    --currentUsers;
+  });
+  
+  //emit user count
+  io.emit('user count', currentUsers);
+  
+  
   
   
   
