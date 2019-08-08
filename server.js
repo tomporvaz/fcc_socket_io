@@ -35,23 +35,31 @@ app.use(session({
 
 
 mongo.connect(process.env.DATABASE, (err, db) => {
-    if(err) console.log('Database error: ' + err);
+  if(err) console.log('Database error: ' + err);
   
-    auth(app, db);
-    routes(app, db);
-      
-    http.listen(process.env.PORT || 3000);
+  auth(app, db);
+  routes(app, db);
+  
+  http.listen(process.env.PORT || 3000);
+  
+  let currentUsers = 0;
+
+  //start socket.io code  
+  io.on('connection', socket => {
+    console.log('A user has connected');
+    ++currentUsers;
+
+    //emit user count
+    io.emit('user count', currentUsers);
+  });
 
   
-    //start socket.io code  
-    io.on('connection', socket => {
-      console.log('A user has connected');
-    });
-
 
   
-
-    //end socket.io code
+  
+  
+  
+  //end socket.io code
   
   
 });
