@@ -16,9 +16,7 @@ $( document ).ready(function() {
     console.log(data);
   })
 
-  socket.on('bye bye user', function(data){
-    console.log(data);
-  })
+  
   
   
 });
