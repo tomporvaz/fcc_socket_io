@@ -13,6 +13,8 @@ const app         = express();
 const http        = require('http').Server(app);
 const io = require('socket.io')(http);
 const sessionStore= new session.MemoryStore();
+const cors = require('cors');
+app.use(cors());
 
 
 fccTesting(app); //For FCC testing purposes
@@ -46,7 +48,7 @@ mongo.connect(process.env.DATABASE, (err, db) => {
       console.log('A user has connected');
     });
 
-    
+
   
 
     //end socket.io code
