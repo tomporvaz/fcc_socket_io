@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  /*global*/
+  /*global io*/
   const socket = io();
   
    
@@ -13,6 +13,10 @@ $( document ).ready(function() {
   
   //listen for user count
   socket.on('user count', function(data){
+    console.log(data);
+  })
+
+  socket.on('bye bye user', function(data){
     console.log(data);
   })
   

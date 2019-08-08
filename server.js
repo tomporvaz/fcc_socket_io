@@ -59,8 +59,8 @@ mongo.connect(process.env.DATABASE, (err, db) => {
     });
 
     //emit user count
-    io.emit('user count', currentUsers);
-    
+    io.emit('bye bye user', currentUsers);
+
   });
 
   
