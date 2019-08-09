@@ -1,6 +1,7 @@
 $( document ).ready(function() {
   /*global io*/
   const socket = io();
+  const jquery = require('jquery');
   
    
   // Form submittion with new message in field with id 'm'
@@ -12,8 +13,9 @@ $( document ).ready(function() {
   });
   
   //listen for user count
-  socket.on('user count', function(data){
+  socket.on('user', function(data){
     console.log(data);
+    $('#num-users').text(`${data.currentUsers} users online`);
   })
 
   
