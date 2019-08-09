@@ -15,6 +15,7 @@ const io = require('socket.io')(http);
 const sessionStore= new session.MemoryStore();
 const cors = require('cors');
 app.use(cors());
+const passportSocketIo = require('passport.socketio');
 
 
 fccTesting(app); //For FCC testing purposes
@@ -33,6 +34,17 @@ app.use(session({
   store: sessionStore,
 }));
 
+io.use(passportSocketIo.authorize({
+  cookieParser: cookieParser,
+  key:          'express.sid',
+  secret:       process.env.SESSION_SECRET,
+  store:        sessionStore
+}, (success, fail) => {
+  if(success){
+    console.log("passportSocketIO success!")
+  } else console.log("passortSocketIO failed :( ")
+}));
+
 
 mongo.connect(process.env.DATABASE, (err, db) => {
   if(err) console.log('Database error: ' + err);
@@ -48,7 +60,7 @@ mongo.connect(process.env.DATABASE, (err, db) => {
   io.on('connection', socket => {
     console.log('A user has connected');
     ++currentUsers;
-    
+    console.log(`user ${socket.request.user.name} connected :) `);
     //emit user count
     io.emit('user count', currentUsers);
     
