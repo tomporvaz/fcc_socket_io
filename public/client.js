@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   /*global io*/
   const socket = io();
-  const jquery = jquery();
+
   
    
   // Form submittion with new message in field with id 'm'
@@ -16,9 +16,9 @@ $( document ).ready(function() {
   socket.on('user', function(data){
     console.log(data);
     $('#num-users').text(`${data.currentUsers} users online`);
-    $('#messeages')
+    $('#messages')
     .append($('<li>'))
-    .text(`${data.name} has ${data.connected ? joined : left} the chat`);
+    .html(`<b>${data.name} has ${data.connected ? 'joined' : 'left'} the chat</b>`);
   })
 
   
