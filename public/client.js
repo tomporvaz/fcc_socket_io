@@ -17,8 +17,8 @@ $( document ).ready(function() {
     console.log(data);
     $('#num-users').text(`${data.currentUsers} users online`);
     $('#messages')
-    .append($('<li>'))
-    .html(`<b>${data.name} has ${data.connected ? 'joined' : 'left'} the chat</b>`);
+    .append($('<li>')
+    .html(`<b>${data.name} has ${data.connected ? 'joined' : 'left'} the chat</b>`));
   })
 
   
