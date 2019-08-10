@@ -14,8 +14,8 @@ $( document ).ready(function() {
   });
 
   //listen for chat message
-  socket.io('message chat', (data) =>{
-    $('#messages').append($('<li>').html(`${data.name}: ${data.message}`));
+  socket.on('chat message', (data) =>{
+    $('#messages').append($('<li>').html(`<b>${data.name}:</b>  ${data.message}`));
   })
   
   //listen for user count
