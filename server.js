@@ -70,9 +70,15 @@ mongo.connect(process.env.DATABASE, (err, db) => {
       --currentUsers;
 
       //emit user count
-      io.emit('user',{name: socket.request.user.name, currentUsers, connected: false});
-      
+      io.emit('user',{name: socket.request.user.name, currentUsers, connected: false});  
     });
+
+    socket.on('chat message', (message) => {
+      console.log(message);
+      io.emit('chat message', {name: socket.request.user.name, message})
+
+    })
+
     
     
     
