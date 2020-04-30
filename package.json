@@ -24,7 +24,7 @@
 		"socket.io": "^1.7.2",
 		"passport.socketio": "^3.7.0",
 		"cookie-parser": "^1.4.3",
-		"jquery": "3.4.1"
+		"jquery": "3.5.0"
 	},
 	"engines": {
 		"node": "4.4.3"
